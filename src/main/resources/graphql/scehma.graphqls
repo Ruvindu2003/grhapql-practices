@@ -1,0 +1,27 @@
+type Product {
+    id: ID!
+    name: String
+    adress: String
+    price: Float
+    category: String!
+}
+
+type Query {
+    getAllProduct: [Product]
+    findById(id: ID!): Product
+}
+
+type Mutation {
+    createProduct(input:Products):Product
+}
+
+input Products{
+    id: ID!
+    name: String
+    adress: String
+    price: Float
+    category: String!
+}
+
+
+
