@@ -6,11 +6,16 @@ import java.util.List;
 
 public interface ProductService {
     List<Products> byCatogory(String category);
-
-//    Products  createProduct(Products product);
+//
+   void   createProduct(Products product);
 
     List<Products> getAll();
 
-    public Products createProduct(String name, String adress, Float price, String category);
+    List<Products> SearchProduct(Integer id);
+
+    boolean deleteProduct(Integer id);
+
+
+//    public void createProduct(Integer id,String name, String adress, Double price, String category);
 
 }

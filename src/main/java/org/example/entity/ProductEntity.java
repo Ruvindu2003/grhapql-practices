@@ -14,6 +14,6 @@ public class ProductEntity {
     private Integer id;
     private String name;
     private String adress;
-    private Float price;
+    private Double price;
     private String category;
 }

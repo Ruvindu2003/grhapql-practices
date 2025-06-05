@@ -7,11 +7,14 @@ import org.example.dto.Products;
 import org.example.entity.ProductEntity;
 import org.example.repository.Productrepsitory;
 import org.example.service.ProductService;
+import org.hibernate.tool.schema.spi.ExceptionHandler;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -29,13 +32,12 @@ public class Productimpl implements ProductService {
 
         return null;
     }
-//
-//    @Override
-//    public Products  createProduct(Products product) {
-//        ProductEntity save = productrepsitory.save(objectMapper.convertValue(product, ProductEntity.class));
-//        return  objectMapper.convertValue(save, Products.class);
-//    }
 
+    @Override
+    public void   createProduct(Products product) {
+        productrepsitory.save(modelMapper.map(product, ProductEntity.class));
+
+    }
     @Override
     public List<Products> getAll() {
         List<Products> productList=new ArrayList<>();
@@ -46,15 +48,50 @@ public class Productimpl implements ProductService {
         return productList;
     }
 
-    public Products createProduct(String name, String adress, Float price, String category) {
-        Products product = new Products();
-        product.setName(name);
-        product.setAdress(adress);
-        product.setPrice(price);
-        product.setCategory(category);
-        modelMapper.map(product,ProductEntity.class);
-        return product;
+         @Override
+        public List<Products> SearchProduct(Integer id) {
+        List<Products>products=new ArrayList<>();
+       try {
+           List<ProductEntity> productEntities = Collections.singletonList(productrepsitory.findById(id).orElse(null));
+
+
+           productEntities.forEach(productEntity -> {
+               products.add(modelMapper.map(productEntity, Products.class));
+           });
+           return products;
+       }catch (Exception e){
+           return List.of();
+       }
+
     }
+
+
+
+    @Override
+    public boolean deleteProduct(Integer id) {
+        if(id==null){
+            System.out.println("jyfjyfjj");
+
+            return  false;
+        }try {
+            productrepsitory.deleteById(id);
+            return true;
+
+        }catch (Exception e){
+
+        }
+      return  true;
+    }
+
+//    public void createProduct(Integer id,String name, String adress, Double price, String category) {
+//        Products product = new Products();
+//        product.setName(name);
+//        product.setAdress(adress);
+//        product.setPrice(price);
+//        product.setCategory(category);
+//        modelMapper.map(product,ProductEntity.class);
+//
+//    }
 }
 
 

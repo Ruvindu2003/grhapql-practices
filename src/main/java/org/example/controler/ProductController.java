@@ -34,6 +34,12 @@ public class ProductController {
         return productService.getAll();
     }
 
+    @GetMapping("Search/{id}")
+    public List<Products>getProduct(@PathVariable Integer id){
+      return   productService.SearchProduct(id);
+
+    }
+
 
 
 }
