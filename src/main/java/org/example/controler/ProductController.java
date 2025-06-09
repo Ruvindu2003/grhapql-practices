@@ -5,11 +5,8 @@ import lombok.RequiredArgsConstructor;
 
 import org.example.dto.Products;
 import org.example.service.ProductService;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-
 @RestController
 @RequestMapping("/api/product")
 @CrossOrigin

@@ -23,16 +23,16 @@ public class ProductGrhapaController {
 
     @MutationMapping
     public void createProduct(@Argument("input")  Products products){
-         productService. createProduct(products);
+         productService.createProduct(products);
     }
 //    @MutationMapping
 //    public void createProduct(@Argument Integer id,@Argument String name, @Argument String adress, @Argument Double price, @Argument String category){
 //        productService.createProduct(id,name,adress,price,category);
 //
 //    }
-@QueryMapping
+    @QueryMapping
     public List<Products> SearchProduct(@Argument Integer id){
-        return  productService.SearchProduct(id);
+        return productService.SearchProduct(id);
 //        return   new Products(1,"ruvindu","nuwaraEliaya",700.00,"6000erge");
     }
 

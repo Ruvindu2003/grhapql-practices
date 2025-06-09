@@ -17,8 +17,7 @@ type  Mutation{
     SearchProduct(id:Int):[Product]
 
 }
-input  Products{
-
+    input  Products{
     name:String
     adress:String
     price:Float
